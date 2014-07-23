@@ -1,7 +1,8 @@
 'use strict';
 
 var passport = require('passport'),
-		path = require('path');
+		path = require('path'),
+		User = require('../models/User');
 
 module.exports = function() {
 	// Serialize sessions

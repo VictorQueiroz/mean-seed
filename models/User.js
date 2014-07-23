@@ -1,9 +1,11 @@
+'use strict';
+
 var db = require('./index'),
 		mongoose = db.mongoose,
-		Schema = mongoose.Schema,
-		bcrypt = require('bcrypt');
+		Schema = mongoose.Schema;
 
 var users = new Schema ({
+	username: { type: String },
 	name: { type: String, default: '', lowercase: true, trim: true },
 	email: { type: String, default: '', lowercase: true },
 	password: { type: String }
@@ -38,6 +40,7 @@ exports.get = function (req, res) {
 exports.store = function (req, res) {
 	var data = req.body;
 	var user = new User({
+		username: data.username,
 		email: data.email,
 		name: data.name,
 		password: data.password
