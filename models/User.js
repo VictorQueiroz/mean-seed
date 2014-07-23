@@ -5,6 +5,7 @@ var db = require('./index'),
 
 var users = new Schema ({
 	name: { type: String, default: '', lowercase: true, trim: true },
+	email: { type: String, default: 'anything@domain.com', lowercase: true },
 	password: { type: String }
 });
 
