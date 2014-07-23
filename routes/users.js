@@ -1,7 +1,7 @@
 var User = require('../models/User');
 
-exports.all = function (req, res) {
-	User.all(req, res);
+exports.list = function (req, res) {
+	User.list(req, res);
 };
 
 exports.get = function (req, res) {

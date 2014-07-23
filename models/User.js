@@ -10,7 +10,7 @@ var users = new Schema ({
 
 var User = mongoose.model('User', users);
 
-exports.all = function (req, res) {
+exports.list = function (req, res) {
 	User
 		.find()
 		.exec(function (err, user) {

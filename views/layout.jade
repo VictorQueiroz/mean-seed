@@ -6,4 +6,33 @@ html(ng-app="app")
 		title My first application
 		link(rel="stylesheet", href="/css/style.min.css")
 	body
-		block content
+		nav(role="navigation").navbar.navbar-default
+			div.container-fluid
+				div.navbar-header
+					button(type="button").navbar-toggle
+						span.sr-only Toggle navigation
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a(href="#").navbar-brand My first project
+				div.collapse.navbar-collapse
+					ul.nav.navbar-nav
+						li
+							a(href="/") Home							
+						li
+							a(href="/about-us") About us
+					ul.nav.navbar-nav.navbar-right
+						li
+							a(href="/register") Register
+						li
+							a(href="/authentication") Authentication
+		div
+			block content
+	script(src="/js/vendor/angular/angular.min.js")
+	script(src="/js/vendor/angular-resource/angular-resource.min.js")
+	script(src="/js/vendor/angular-route/angular-route.min.js")
+	script(src="/js/vendor/angular-sanitize/angular-sanitize.min.js")
+	script(src="/js/vendor/angular-strap/dist/angular-strap.min.js")
+	script(src="/js/vendor/angular-strap/dist/angular-strap.tpl.min.js")
+	script(src="/js/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js")
+	script(src="/js/base.min.js")

@@ -50,12 +50,10 @@ if (env === 'production') {
 
 /**
  * Routes
- */
+ */ 
 var users = require('./routes/users');
 
-app.get('/', routes.index);
-
-app.get('/api/users', users.all);
+app.get('/api/users', users.list);
 app.get('/api/users/:id', users.get);
 app.post('/api/users', users.store);
 app.put('/api/users/:id', users.update);
