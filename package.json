@@ -1,5 +1,6 @@
 {
   "name": "mean-seed",
+  "private": true,
   "version": "0.0.1",
   "description": "",
   "main": "server.js",
@@ -15,5 +16,16 @@
   "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/VictorQueiroz/mean-seed/issues"
+  },
+  "dependencies": {
+    "body-parser": "^1.0.2",
+    "error-handler": "^0.1.4",
+    "express": "~4.1.1",
+    "jade": "~0.31.2",
+    "method-override": "^1.0.0",
+    "morgan": "^1.0.0",
+    "mongoose": "~3.8.13",
+    "favicon": "0.0.2",
+    "bcrypt": "~0.7.8"
   }
 }
