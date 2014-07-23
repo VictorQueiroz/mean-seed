@@ -7,7 +7,10 @@ angular.module('app', [
 	'app.services',
 	'partials',
 
-	'ngRoute'
+	'ngRoute',
+
+	'ui.bootstrap',
+	'mgcrea.ngStrap'
 ])
 
 .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
