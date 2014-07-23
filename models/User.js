@@ -5,7 +5,7 @@ var db = require('./index'),
 
 var users = new Schema ({
 	name: { type: String, default: '', lowercase: true, trim: true },
-	email: { type: String, default: 'anything@domain.com', lowercase: true },
+	email: { type: String, default: '', lowercase: true },
 	password: { type: String }
 });
 
@@ -22,11 +22,23 @@ exports.list = function (req, res) {
 		});
 };
 
-exports.get = function (req, res) {};
+exports.get = function (req, res) {
+	var id = req.params.id;
+
+	User
+		.findOne({ _id: id })
+		.exec(function(err, user) {
+			if(err)
+				console.log(err);
+			else
+				res.json(user);
+		});
+};
 
 exports.store = function (req, res) {
 	var data = req.body;
 	var user = new User({
+		email: data.email,
 		name: data.name,
 		password: data.password
 	});

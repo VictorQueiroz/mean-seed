@@ -1,7 +1,7 @@
 'use strict';
 
-var passport 	= require('passport'),
-		path 			= require('path');
+var passport = require('passport'),
+		path = require('path');
 
 module.exports = function() {
 	// Serialize sessions
