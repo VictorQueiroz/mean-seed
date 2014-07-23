@@ -48,6 +48,8 @@ if (env === 'development') {
 if (env === 'production') {
 }
 
+require('./config/passport')();
+
 /**
  * Routes
  */ 
@@ -58,6 +60,8 @@ app.get('/api/users/:id', users.get);
 app.post('/api/users', users.store);
 app.put('/api/users/:id', users.update);
 app.delete('/api/users/:id', users.destroy);
+
+app.post('/auth/local', require('./controllers/users').signin);
 
 app.get('*', routes.index);
 
