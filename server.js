@@ -22,7 +22,7 @@ var app = module.exports = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
-app.set('app/views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({
