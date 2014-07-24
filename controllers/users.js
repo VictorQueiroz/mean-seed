@@ -1,15 +1,17 @@
 'use strict';
 
-var mongoose = require('mongoose'),
+var User = require('../models/user'),
 		passport = require('passport');
 
 exports.signin = function (req, res, next) {
 	passport.authenticate('local', function(err, user, info) {
-		console.log(info, user, err);
 		
 		if (err || !user) {
+			console.log('Some trouble here.');
 			res.send(400, info);
 		} else {
+			console.log('It\'s okay.');
+
 			// Remove sensitive data before login
 			user.password = undefined;
 			user.salt = undefined;
@@ -22,5 +24,51 @@ exports.signin = function (req, res, next) {
 				}
 			});
 		}
+
 	})(req, res, next);
 };
+
+exports.list = function (req, res) {
+	User
+		.find()
+		.exec(function (err, user) {
+			if(err)
+				console.log(err);
+			else
+				res.json(user);
+		});
+};
+
+exports.get = function (req, res) {
+	var id = req.params.id;
+
+	User
+		.findOne({ _id: id })
+		.exec(function(err, user) {
+			if(err)
+				console.log(err);
+			else
+				res.json(user);
+		});
+};
+
+exports.store = function (req, res) {
+	var data = req.body;
+	var user = new User({
+		username: data.username,
+		email: data.email,
+		name: data.name,
+		password: data.password
+	});
+
+	user.save(function(err, data) {
+		if(err)
+			res.json(err)
+		else 
+			res.json(data);
+	});
+};
+
+exports.update = function (req, res) {};
+
+exports.destroy = function (req, res) {};

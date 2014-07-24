@@ -14,4 +14,4 @@ db.once('open', function () {
 	console.log('Connection to the database successfully!');
 });
 
-exports.mongoose = mongoose;
+module.exports = mongoose;

@@ -2,11 +2,9 @@
 
 var passport = require('passport'),
 		LocalStrategy = require('passport-local').Strategy,
-		User = require('../../models/User');
+		User = require('../../models/user');
 
-module.exports = function (req, res, next) {
-	console.log(User);
-	
+module.exports = function (req, res, next) {	
 	passport.use(new LocalStrategy({
 			usernameField: 'username',
 			passwordField: 'password'
@@ -23,6 +21,8 @@ module.exports = function (req, res, next) {
 						message: 'Unknown user'
 					});
 				}
+				console.log(user);
+				return;
 				if (!user.authenticate(password)) {
 					return done(null, false, {
 						message: 'Invalid password'
