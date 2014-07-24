@@ -2,7 +2,7 @@
 
 var passport = require('passport'),
 		path = require('path'),
-		User = require('../models/user');
+		User = require('../models').user;
 
 module.exports = function() {
 	// Serialize sessions

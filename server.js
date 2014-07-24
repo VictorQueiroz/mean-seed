@@ -1,13 +1,12 @@
+'use strict';
+
 var db = require('./config/mongoose');
 
 var app = require('./config/express')();
 
 require('./config/passport')();
 
-/**
- * Routes
- */ 
-var usersCtrl = require('./controllers/users');
+var usersCtrl = require('./controllers').users;
 
 app.route('/api/users').get(usersCtrl.list);
 app.route('/api/users/:id').get(usersCtrl.get);
