@@ -4,7 +4,7 @@
  */
 
 var express = require('express'),
-  	bodyParser = require('body-parser'),
+    bodyParser = require('body-parser'),
   	methodOverride = require('method-override'),
   	errorhandler = require('errorhandler'),
   	morgan = require('morgan'),
