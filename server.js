@@ -3,16 +3,16 @@
  * Module dependencies
  */
 
-var express 				= require('express'),
-  	bodyParser 			= require('body-parser'),
-  	methodOverride 	= require('method-override'),
-  	errorhandler 		= require('errorhandler'),
-  	morgan 					= require('morgan'),
-  	routes 					= require('./routes'),
-  	models 					= require('./models'),
-  	http 						= require('http'),
-  	path 						= require('path'),
-  	favicon					= require('favicon');
+var express = require('express'),
+  	bodyParser = require('body-parser'),
+  	methodOverride = require('method-override'),
+  	errorhandler = require('errorhandler'),
+  	morgan = require('morgan'),
+  	routes = require('./routes'),
+  	models = require('./models'),
+  	http = require('http'),
+  	path = require('path'),
+  	favicon = require('favicon');
 
 var app = module.exports = express();
 
