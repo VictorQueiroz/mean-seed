@@ -1,21 +1,15 @@
-var User = require('../models/user');
+'use strict';
 
-exports.list = function (req, res) {
-	User.list(req, res);
-};
+var controllers = require('../controllers');
 
-exports.get = function (req, res) {
-	User.get(req, res);
-};
+module.exports = function (app) {
+	var usersCtrl = controllers.users;
 
-exports.store = function (req, res) {
-	User.store(req, res);
-};
+	app.route('/api/users').get(usersCtrl.list);
+	app.route('/api/users/:id').get(usersCtrl.get);
+	app.route('/api/users').post(usersCtrl.store);
+	app.route('/api/users/:id').put(usersCtrl.update);
+	app.route('/api/users/:id').delete(usersCtrl.destroy);
 
-exports.update = function (req, res) {
-	User.update(req, res);
-};
-
-exports.destroy = function (req, res) {
-	User.destroy(req, res);
+	app.route('/auth/local').post(usersCtrl.signin);	
 };

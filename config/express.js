@@ -39,5 +39,14 @@ module.exports = function () {
   if (env === 'production') {
   }
 
+  /**
+   * Routes
+   */
+  require('../routes')(app);
+
+  app.route('*').get(function(req, res) {
+    res.render('index');
+  });  
+
   return app; 
 };
