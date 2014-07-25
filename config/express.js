@@ -2,6 +2,7 @@
 
 var express 			= require('express'),
   bodyParser 			= require('body-parser'),
+  cors            = require('cors'),
   methodOverride 	= require('method-override'),
   errorhandler 		= require('errorhandler'),
   morgan 					= require('morgan'),
@@ -19,6 +20,7 @@ module.exports = function () {
   app.use(bodyParser.urlencoded({
     extended: true
   }));
+  app.use(cors());
   app.use(bodyParser.json());
   app.use(methodOverride());
   app.use(express.static(path.join(__dirname, '../public')));
