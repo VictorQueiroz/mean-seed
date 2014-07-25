@@ -8,16 +8,19 @@ The aim of this project is to facilitate and establish a pattern in the developm
 ### Folder structure
 
 ```
-/config
-/controllers
+config/
+  express.js
+  passport.js
+controllers/
   users.js
-/models
+models/
   user.js
-/public
-/src
-  scss
-/views
-  partials
+public/
+src/
+  scss/
+    master.scss
+views/
+  partials/
     template.tpl.html
   layout.jade
   index.jade
