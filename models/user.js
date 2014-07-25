@@ -5,10 +5,26 @@ var db = require('../config/mongoose'),
 		Schema = mongoose.Schema;
 
 var userSchema = new Schema ({
-	username: { type: String },
-	name: { type: String, default: '', lowercase: true, trim: true },
-	email: { type: String, default: '', lowercase: true },
-	password: { type: String }
+	username: {
+		type: String,
+		unique: true,
+		required: true
+	},
+	name: {
+		type: String,
+		default: '',
+		trim: true
+	},
+	email: {
+		type: String,
+		default: '',
+		unique: true,
+		required: true,
+	},
+	password: {
+		type: String,
+		required: true
+	}
 });
 
 var User = mongoose.model('User', userSchema);
