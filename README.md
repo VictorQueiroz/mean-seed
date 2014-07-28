@@ -28,4 +28,15 @@ src/
 server.js
 ```
 
+### Usage
+
+```
+npm install
+bower install
+grunt
+npm start
+```
+
+Live reload it's not working yet, but it will.
+
 Under development.
