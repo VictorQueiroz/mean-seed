@@ -1,12 +1,20 @@
 'use strict';
 
-var db = require('./config/mongoose');
+var db = require('./app/config/mongoose');
 
-var app = require('./config/express')();
+var app = require('./app/config/express')();
 
-require('./config/passport')();
+require('./app/config/passport')();
 
-var http = require('http');
-http.createServer(app).listen(app.get('port'));
+var server = require('http').Server(app);
+
+var io = require('socket.io')(server);
+var fs = require('fs');
+
+server.listen(app.get('port'));
+
+io.on('connection', function (socket) {
+	// Events here!
+});
 
 exports = module.exports = app;

@@ -23,12 +23,13 @@ module.exports = function () {
   app.use(cors());
   app.use(bodyParser.json());
   app.use(methodOverride());
-  app.use(express.static(path.join(__dirname, '../public')));
+  app.use(express.static(path.join(__dirname, '../../public')));
 
   /**
    * Transfer the 'bower_components' folder contents to '/js/vendor' of the 'public' folder.
    */
-  app.use('/js/vendor', express.static(path.join(__dirname, '../bower_components')));
+  app.use('/js/vendor', express.static(path.join(__dirname, '../../bower_components')));
+  console.log(path.join(__dirname, '../../bower_components'));
 
   var env = process.env.NODE_ENV || 'development';
 
@@ -48,7 +49,7 @@ module.exports = function () {
 
   app.route('*').get(function(req, res) {
     res.render('index');
-  });  
+  });
 
   return app; 
 };

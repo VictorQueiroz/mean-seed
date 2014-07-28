@@ -28,6 +28,11 @@ html(ng-app="app")
 							a(href="/authentication") Authentication
 		div
 			block content
+	script(src="/socket.io/socket.io.js")
+	script(type="text/javascript")
+		window.onload = function () {
+			var socket = io.connect('http://localhost');
+		};
 	script(src="/js/vendor/angular/angular.min.js")
 	script(src="/js/vendor/angular-resource/angular-resource.min.js")
 	script(src="/js/vendor/angular-route/angular-route.min.js")
