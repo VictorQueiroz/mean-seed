@@ -13,4 +13,5 @@ module.exports = function (app) {
 	app.route('/api/users/:id').delete(ctrl.destroy);
 
 	app.post('/auth/local', passport.authenticate('local'), ctrl.signin);
+	app.get('/auth/basic', passport.authenticate('basic'));
 };
