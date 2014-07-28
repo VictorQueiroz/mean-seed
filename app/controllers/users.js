@@ -3,29 +3,35 @@
 var User = require('../models/user'),
 		passport = require('passport');
 
-exports.signin = function (req, res, next) {
-	passport.authenticate('local', function(err, user, info) {
+// exports.signin = function (req, res, next) {
+// 	passport.authenticate('local', function(err, user, info) {
 		
-		if (err || !user) {
-			console.log('Some trouble here.');
-			res.send(400, info);
-		} else {
-			console.log('It\'s okay.');
+// 		if (err || !user) {
+// 			console.log('Some trouble here.');
+// 			res.send(400, info);
+// 		} else {
+// 			console.log('Not a trouble at all.');
 
-			// Remove sensitive data before login
-			user.password = undefined;
-			user.salt = undefined;
+// 			// Remove sensitive data before login
+// 			user.password = undefined;
+// 			user.salt = undefined;
 
-			req.login(user, function(err) {
-				if (err) {
-					res.send(400, err);
-				} else {
-					res.jsonp(user);
-				}
-			});
-		}
+// 			req.login(user, function(err) {
+// 				if (err) {
+// 					res.send(400, err);
+// 				} else {
+// 					res.json(user);
+// 				}
+// 			});
+// 		}
 
-	})(req, res, next);
+// 	})(req, res, next);
+// };
+
+exports.signin = function (req, res, next) {
+  // If this function gets called, authentication was successful.
+  // `req.user` contains the authenticated user.
+  res.redirect('/users/' + req.user.username);
 };
 
 exports.list = function (req, res) {

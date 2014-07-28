@@ -21,14 +21,13 @@ module.exports = function (req, res, next) {
 						message: 'Unknown user'
 					});
 				}
-				console.log(user);
-				return;
-				if (!user.authenticate(password)) {
-					return done(null, false, {
-						message: 'Invalid password'
-					});
-				} else {
-				}
+
+				// if (!user.authenticate(password)) {
+				// 	return done(null, false, {
+				// 		message: 'Invalid password'
+				// 	});
+				// } else {
+				// }
 
 				return done(null, user);
 			});

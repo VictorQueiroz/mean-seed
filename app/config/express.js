@@ -8,7 +8,8 @@ var express 			= require('express'),
   morgan 					= require('morgan'),
   http 						= require('http'),
   path 						= require('path'),
-  favicon					= require('favicon');
+  favicon					= require('favicon'),
+  passport        = require('passport');
 
 module.exports = function () {
   var app = express();
@@ -23,13 +24,14 @@ module.exports = function () {
   app.use(cors());
   app.use(bodyParser.json());
   app.use(methodOverride());
+  app.use(passport.initialize());
+  app.use(passport.session());
   app.use(express.static(path.join(__dirname, '../../public')));
 
   /**
    * Transfer the 'bower_components' folder contents to '/js/vendor' of the 'public' folder.
    */
   app.use('/js/vendor', express.static(path.join(__dirname, '../../bower_components')));
-  console.log(path.join(__dirname, '../../bower_components'));
 
   var env = process.env.NODE_ENV || 'development';
 
@@ -53,3 +55,4 @@ module.exports = function () {
 
   return app; 
 };
+
