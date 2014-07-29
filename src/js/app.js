@@ -1,5 +1,11 @@
 'use strict';
 
+var socket = io();
+
+socket.on('user authenticated', function(user) {
+	alert('Congratulations, '+user.username+', you\'re logged!');
+});	
+
 angular.module('app', [
 	'app.controllers',
 	'app.filters',
@@ -24,7 +30,8 @@ angular.module('app', [
 		})
 
 		.when('/authentication', {
-			templateUrl: 'authentication.tpl.html'
+			templateUrl: 'authentication.tpl.html',
+			controller: 'AuthCtrl'
 		})
 
 		.otherwise({ redirectTo: '/' });

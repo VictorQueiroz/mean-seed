@@ -31,6 +31,7 @@ var User = require('../models/user'),
 exports.signin = function (req, res, next) {
   // If this function gets called, authentication was successful.
   // `req.user` contains the authenticated user.
+  res.json({result: true});
   res.redirect('/users/' + req.user.username);
 };
 

@@ -7,7 +7,7 @@ angular.module('partials', []).run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('authentication.tpl.html',
-    "<div class=container><div class=row><div class=col-lg-12><h1>Autenticação</h1><form name=form><div class=form-group><label for=\"\">Nome de Usuário</label><input class=form-control></div><div class=form-group><label for=\"\">Senha</label><input class=form-control></div><div class=form-group><button type=submit class=\"btn btn-default\">Conectar-se</button></div></form></div></div></div>"
+    "<div class=container><div class=row><div class=col-lg-12><h1>Autenticação</h1><form name=form ng-submit=authenticate(credentials)><div class=form-group><label for=\"\">Nome de Usuário</label><input ng-model=credentials.username class=form-control></div><div class=form-group><label for=\"\">Senha</label><input ng-model=credentials.password type=password class=form-control></div><div class=form-group><button type=submit class=\"btn btn-default\">Conectar-se</button></div></form></div></div></div>"
   );
 
 

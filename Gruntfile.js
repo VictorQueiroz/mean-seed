@@ -8,11 +8,11 @@ module.exports = function(grunt) {
 
 	var paths = {};
 	paths.public = 'public';
-	paths.views = 'views';
+	paths.views = 'app/views';
 	paths.partials = paths.views + '/partials';
-	paths.models = 'models';
+	paths.models = 'app/models';
 	paths.src = 'src';
-	paths.routes = 'routes';
+	paths.routes = 'app/routes';
 
 	grunt.initConfig({
 		paths: paths,
@@ -20,12 +20,15 @@ module.exports = function(grunt) {
 		pkg: grunt.file.readJSON('package.json'),
 
     ngtemplates: {
+    	jshint: {
+    	},
+
       partials: {
         src: '<%= paths.partials %>/**/{,*/}*.html',
         dest: '<%= paths.src %>/js/partials.js',
         options: {
           prefix: '',
-          url: function(url) { return url.replace('views/partials/', ''); },
+          url: function(url) { return url.replace('app/views/partials/', ''); },
           standalone: true,
           htmlmin: {
             collapseBooleanAttributes:      true,
@@ -52,6 +55,19 @@ module.exports = function(grunt) {
 			}			
 		},
 
+		uglify: {
+			options: {
+				mangle: false,
+				beautify: true
+			},
+
+			my_target: {
+				files: {
+					'<%= paths.public %>/js/base.min.js': ['<%= paths.public %>/js/base.min.js']
+				}
+			}
+		},
+
 		sass: {
 			dist: {
 				options: {},
@@ -59,11 +75,45 @@ module.exports = function(grunt) {
 					'<%= paths.public %>/css/style.min.css': ['<%= paths.src %>/scss/master.scss']
 				}
 			}
+		},
+
+		nodemon: {
+			dev: {
+				script: 'server.js',
+				options: {
+					nodeArgs: ['--debug'],
+					env: {
+						PORT: 3000
+					},
+				}
+			}
+		},
+
+		watch: {
+			js: {
+				files: [
+					'<%= paths.src %>/**/{,*/}*.js',
+					'<%= paths.partials %>/**/{,*/}*.html'
+				],
+				tasks: ['js'],
+				options: {
+					livereload: true
+				}
+			},
+		},
+
+		concurrent: {
+			target: {
+				tasks: ['nodemon', 'watch'],
+				options: {
+					logConcurrentOutput: true
+				}
+			}
 		}
 
 	});
 
-	grunt.registerTask('js', ['ngtemplates', 'concat']);
+	grunt.registerTask('js', ['ngtemplates', 'concat', 'uglify']);
 	grunt.registerTask('css', ['sass']);
-	grunt.registerTask('default', ['js', 'css']);
+	grunt.registerTask('default', ['js', 'css', 'concurrent']);
 }

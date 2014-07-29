@@ -4,6 +4,10 @@ angular.module('app.services', [])
 
 .value('version', '0.0.1')
 
+.factory('$socket', ['$window', function($window){
+	return $window.io();
+}])
+
 .factory('User', ['$resource', function ($resource) {
 	return $resource ('', {}, {
 		'list': {url: '/api/users', params: {}, method: 'GET', isArray: true},
