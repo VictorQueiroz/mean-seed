@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('app.controllers', ['app.services'])
+angular.module('app.controllers', [
+	'app.services'
+])
 
 .controller('AuthCtrl', ['$scope', '$http', '$alert', '$socket', function ($scope, $http, $alert, $socket) {
 	$socket.on('user authenticated', function(user) {
