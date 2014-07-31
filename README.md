@@ -66,7 +66,7 @@ Examples:
 Register-Ctrl.js should be called as a module through user.ctrl.register.
 
 ```
-angular.module('user.ctrl.newController', ['user.ctrl.anotherCtrl']);
+angular.module('user.ctrl.new-controller', ['user.ctrl.another-ctrl']);
 ```
 
 User-Service.js should be called through user.service.
@@ -84,7 +84,6 @@ angular.module('user.service.foo', ['user.service.bar']);
 npm install
 bower install
 grunt
-npm start
 ```
 
 Live reload it's not working yet, but it will.
