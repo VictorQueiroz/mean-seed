@@ -1,0 +1,34 @@
+'use strict';
+
+angular.module('user.ctrl.auth', [
+	'app.services'
+])
+
+.controller('AuthCtrl', ['$scope', '$http', '$alert', '$socket', function ($scope, $http, $alert, $socket) {
+	$socket.on('user authenticated', function(user) {
+		alert('Congratulations, '+user.username+', you\'re logged!');
+	});
+
+	$socket.on('user unauthorized', function() {
+		alert('Sorry, you can not access this area!');
+	});
+
+	$socket.on('user authentication error', function () {
+		alert('Ocorreu um erro, tente novamente mais tarde!');
+	});
+
+	$scope.authenticate = function (credentials) {
+		$http.post('/auth/local', credentials).then(function(res) {
+			var user = res.data;
+
+			if(!res.data.result)
+				$socket.emit('user unauthorized', {});
+			
+			if (user.username) {
+				$socket.emit('user authenticated', user);
+			}
+			else
+				$socket.emit('user authentication error', {});
+		});
+	};
+}]);

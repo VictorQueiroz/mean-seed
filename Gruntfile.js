@@ -28,7 +28,7 @@ module.exports = function(grunt) {
         dest: '<%= paths.src %>/js/partials.js',
         options: {
           prefix: '',
-          url: function(url) { return url.replace('app/views/partials/', ''); },
+          url: function(url) { return url.replace(paths.partials+'/', ''); },
           standalone: true,
           htmlmin: {
             collapseBooleanAttributes:      true,
