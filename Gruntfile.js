@@ -9,10 +9,10 @@ module.exports = function(grunt) {
 	var paths = {};
 	paths.public = 'public';
 	paths.views = 'app/views';
-	paths.partials = paths.views + '/partials';
 	paths.models = 'app/models';
 	paths.src = 'src';
 	paths.routes = 'app/routes';
+	paths.partials = paths.src + '/partials';	
 
 	grunt.initConfig({
 		paths: paths,

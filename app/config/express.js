@@ -47,15 +47,13 @@ module.exports = function () {
    */
   app.use('/js/vendor', express.static(path.join(__dirname, '../../bower_components')));
 
-  var env = process.env.NODE_ENV || 'development';
-
   // Development only
-  if (env === 'development') {
+  if (app.get('env') === 'development') {
     app.use(errorhandler());
   }
 
   // Production only
-  if (env === 'production') {
+  if (app.get('env') === 'production') {
   }
 
   return app; 
