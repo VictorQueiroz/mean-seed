@@ -100,6 +100,16 @@ module.exports = function(grunt) {
 					livereload: true
 				}
 			},
+
+			css: {
+				files: [
+					'<%= paths.src %>/**/{,*/}*.{scss,sass}'
+				],
+				tasks: ['css'],
+				options: {
+					livereload: true
+				}
+			}
 		},
 
 		concurrent: {

@@ -6,16 +6,13 @@ angular.module('user.routes', [
 
 .config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
-		.when('/', {
-			templateUrl: 'index.tpl.html'
+		.when('/users', {
+			templateUrl: 'users/list.tpl.html',
+			controller: 'UserListCtrl'
 		})
 
-		.when('/about-us', {
-			templateUrl: 'about-us.tpl.html'
-		})
-
-		.when('/authentication', {
-			templateUrl: 'authentication.tpl.html',
-			controller: 'AuthCtrl'
+		.when('/users/:id', {
+			templateUrl: 'users/show.tpl.html',
+			controller: 'UserDetailCtrl'
 		});
 }]);

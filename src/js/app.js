@@ -4,6 +4,7 @@ var socket = io();
 
 angular.module('app', [
 	'ngRoute',
+	'ngAnimate',
 
 	'app.routes',
 	'app.controllers',
