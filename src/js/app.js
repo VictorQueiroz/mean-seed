@@ -7,6 +7,7 @@ socket.on('user authenticated', function(user) {
 });	
 
 angular.module('app', [
+	'app.routes',
 	'app.controllers',
 	'app.filters',
 	'app.directives',
@@ -17,24 +18,4 @@ angular.module('app', [
 
 	'ui.bootstrap',
 	'mgcrea.ngStrap'
-])
-
-.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-	$routeProvider
-		.when('/', {
-			templateUrl: 'index.tpl.html'
-		})
-
-		.when('/about-us', {
-			templateUrl: 'about-us.tpl.html'
-		})
-
-		.when('/authentication', {
-			templateUrl: 'authentication.tpl.html',
-			controller: 'AuthCtrl'
-		})
-
-		.otherwise({ redirectTo: '/' });
-
-	$locationProvider.html5Mode(true);
-}]);
+]);
