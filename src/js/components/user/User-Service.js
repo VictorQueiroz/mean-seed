@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('user.service', [])
+angular.module('User/Service', ['ngResource'])
 
 .factory('User', ['$resource', function ($resource) {
 	return $resource ('', {}, {

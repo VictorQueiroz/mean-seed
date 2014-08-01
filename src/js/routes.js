@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('app.routes', [
+angular.module('App/Routes', [
 	'ngRoute',
 
-	'user.routes',
+	'User/Routes',
 ])
 
 .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {

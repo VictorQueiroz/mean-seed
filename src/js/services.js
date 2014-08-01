@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('app.services', [
-	'user.services'
+angular.module('App/Services', [
+	'User/Services'
 ])
 
 .value('version', '0.0.1')

@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('user.ctrl.user-detail', [
+angular.module('User/Ctrl/UserDetail', [
 	'ngRoute',
 
-	'user.service'
+	'User/Service'
 ])
 
 .controller('UserDetailCtrl', ['$scope', '$routeParams', 'User', function ($scope, $routeParams, User) {

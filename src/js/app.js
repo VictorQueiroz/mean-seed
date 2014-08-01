@@ -1,16 +1,16 @@
 'use strict';
 
-var socket = io();
+var socket = io.connect();
 
-angular.module('app', [
+angular.module('App', [
 	'ngRoute',
 	'ngAnimate',
 
-	'app.routes',
-	'app.controllers',
-	'app.filters',
-	'app.directives',
-	'app.services',
+	'App/Routes',
+	'App/Controllers',
+	'App/Filters',
+	'App/Directives',
+	'App/Services',
 	'partials',
 
 	'ui.bootstrap',

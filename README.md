@@ -46,14 +46,14 @@ server.js
 Contains user/*-Ctrl.js etc.
 
 ```
-angular.module('user.ctrl.auth', ['user.ctrl.register']);
+angular.module('User/Ctrl/Auth', ['User/Ctrl/Register']);
 ```
 
 ##### js/directives.js
 Contains user/*-Directive.js.
 
 ```
-angular.module('user.directive.user-list', []);
+angular.module('User/Directive/UserList', []);
 ```
 
 ##### js/filters.js
@@ -66,7 +66,7 @@ Examples:
 Register-Ctrl.js should be called as a module through user.ctrl.register.
 
 ```
-angular.module('user.ctrl.new-controller', ['user.ctrl.another-ctrl']);
+angular.module('User/Ctrl/NewCtrl', ['User/Ctrl/AnotherCtrl']);
 ```
 
 User-Service.js should be called through user.service.
@@ -75,7 +75,7 @@ If you need another services which will be related with User-Service.js, it shou
 
 Filename: Foo-Service.js (e.g. ServiceName-Service.js)
 ```
-angular.module('user.service.foo', ['user.service.bar']);
+angular.module('User/Service/Foo', ['User/Service/Bar']);
 ```
 
 ### Usage

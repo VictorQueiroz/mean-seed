@@ -1,5 +1,5 @@
 'use strict';
 
-angular.module('app.controllers', [
-	'user.controllers'
+angular.module('App/Controllers', [
+	'User/Controllers'
 ]);

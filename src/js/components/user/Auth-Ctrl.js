@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('user.ctrl.auth', [
-	'app.services'
+angular.module('User/Ctrl/Auth', [
+	'App/Services'
 ])
 
 .controller('AuthCtrl', ['$scope', '$http', '$alert', '$socket', function ($scope, $http, $alert, $socket) {

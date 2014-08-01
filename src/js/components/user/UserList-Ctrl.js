@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('user.ctrl.user-list', [
-	'user.service'
+angular.module('User/Ctrl/UserList', [
+	'User/Service'
 ])
 
 .controller('UserListCtrl', ['$scope', 'User', function ($scope, User) {

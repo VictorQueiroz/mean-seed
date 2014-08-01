@@ -5003,8 +5003,8 @@ body {
   padding: 10px; }
 
 .view-animate.ng-enter, .view-animate.ng-leave {
-  -webkit-transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.45s;
-  transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.45s;
+  -webkit-transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
+  transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
   display: block;
   width: 100%;
   position: absolute;
@@ -5015,10 +5015,13 @@ body {
   padding: 10px; }
 
 .view-animate.ng-enter {
-  left: 100%; }
+  transform: translateX(100%);
+  -webkit-transform: translateX(100%); }
 
 .view-animate.ng-enter.ng-enter-active {
-  left: 0; }
+  transform: translateX(0);
+  -webkit-transform: translateX(0); }
 
 .view-animate.ng-leave.ng-leave-active {
-  left: -100%; }
+  transform: translateX(-100%);
+  -webkit-transform: translateX(-100%); }

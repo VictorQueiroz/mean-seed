@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('user.routes', [
-	'user.ctrl.auth'
+angular.module('User/Routes', [
+	'User/Controllers'
 ])
 
 .config(['$routeProvider', function ($routeProvider) {
