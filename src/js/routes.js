@@ -19,7 +19,8 @@ angular.module('App/Routes', [
 
 		.when('/authentication', {
 			templateUrl: 'authentication.tpl.html',
-			controller: 'AuthCtrl'
+			controller: 'AuthCtrl',
+			guest: true
 		})
 
 		.otherwise({ redirectTo: '/' });

@@ -24,9 +24,9 @@ html(ng-app="App")
 						li
 							a(href="/users") Users
 					ul.nav.navbar-nav.navbar-right
-						li
+						li(if-guest)
 							a(href="/register") Register
-						li
+						li(if-guest)
 							a(href="/authentication") Authentication
 		div
 			block content

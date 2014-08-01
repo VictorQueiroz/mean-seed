@@ -19,16 +19,9 @@ module.exports = function (app) {
 			res.json({result: false});
 	});
 
-	app.route('/profile').get(function(req, res) {
-		if(req.user)
-			res.json(req.user);
-		else
-			res.json({result: false});
-	});
-
 	app.get('/auth/check', function(req, res, next) {
 		if(req.isAuthenticated())
-			res.json({result: true});
+			res.json({result: true, user: req.user});
 		else 
 			res.json({result: false});
 	})

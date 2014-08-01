@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('Auth/Service', [
-	'ngCookies'
+	'ngCookies',
+
+	'Session'
 ])
 
 .factory('AuthService', ['$cookieStore', function ($cookieStore) {
-
 }]);
