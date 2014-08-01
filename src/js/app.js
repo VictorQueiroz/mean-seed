@@ -5,6 +5,7 @@ var socket = io.connect();
 angular.module('App', [
 	'ngRoute',
 	'ngAnimate',
+	'ngSanitize',
 
 	'App/Routes',
 	'App/Controllers',
@@ -12,6 +13,8 @@ angular.module('App', [
 	'App/Directives',
 	'App/Services',
 	'partials',
+
+	'Auth',
 
 	'ui.bootstrap',
 	'mgcrea.ngStrap'
