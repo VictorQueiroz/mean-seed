@@ -4,7 +4,7 @@ angular.module('User/Ctrl/Auth', [
 	'App/Services'
 ])
 
-.controller('AuthCtrl', ['$scope', '$http', '$alert', '$socket', function ($scope, $http, $alert, $socket) {
+.controller('AuthCtrl', ['$scope', '$http', '$alert', '$socket', '$location', function ($scope, $http, $alert, $socket, $location) {
 	$socket.on('user authenticated', function(user) {
 		alert('Congratulations, '+user.username+', you\'re logged!');
 	});
@@ -26,6 +26,7 @@ angular.module('User/Ctrl/Auth', [
 			
 			if (user.username) {
 				$socket.emit('user authenticated', user);
+				$location.path('/');
 			}
 			else
 				$socket.emit('user authentication error', {});

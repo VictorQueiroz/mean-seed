@@ -1,42 +1,41 @@
 'use strict';
 
-var User = require('../models/user'),
+var Post = require('../models/post'),
 		passport = require('passport');
 
 exports.list = function (req, res) {
-	User
+	Post
 		.find()
-		.exec(function (err, user) {
+		.exec(function (err, post) {
 			if(err)
 				console.log(err);
 			else
-				res.json(user);
+				res.json(post);
 		});
 };
 
 exports.get = function (req, res) {
 	var id = req.params.id;
 
-	User
+	Post
 		.findOne({ _id: id })
-		.exec(function(err, user) {
+		.exec(function(err, post) {
 			if(err)
 				console.log(err);
 			else
-				res.json(user);
+				res.json(post);
 		});
 };
 
 exports.store = function (req, res) {
 	var data = req.body;
-	var user = new User({
-		username: data.username,
-		email: data.email,
-		name: data.name,
-		password: data.password
+	var post = new Post({
+		title: data.title,
+		body: data.body,
+		user: req.user._id
 	});
 
-	user.save(function(err, data) {
+	post.save(function(err, data) {
 		if(err)
 			res.json(err)
 		else 

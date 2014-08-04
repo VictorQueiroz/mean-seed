@@ -5,12 +5,21 @@ angular.module('Session/Service', [
 ])
 
 .factory('Session', ['$http', '$cookieStore', function ($http, $cookieStore) {
+	var res = $http.get('/auth/check');
+
 	return {
-		isAuthenticated: $http.get('/auth/check').then(function(res) {
+		isAuthenticated: res.then(function(res) {
 			if(res.data.result)
 				return {result: true};
 			else
 				return {result: false};
 		}),
+
+		getUser: res.then(function(res) {
+			if(res.data.result)
+				return res.data.user;
+			else
+				return {result: false};
+		})
 	};
 }]);

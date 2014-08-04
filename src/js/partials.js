@@ -21,6 +21,11 @@ angular.module('partials', []).run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('users/profile.tpl.html',
+    "<div class=container><div class=row><div class=col-md-12><img src=http://placehold.it/1600x500 width=100% alt=\"Profile photo\"><h2>{{ user.name }} <small ng-bind=user.email></small></h2><p><b>Username:</b> {{ user.username }}</p></div></div></div>"
+  );
+
+
   $templateCache.put('users/show.tpl.html',
     "<div class=container><div class=row><div class=col-lg-12><img src=http://placehold.it/1600x500 width=100% alt=\"Profile photo\"><h2>{{ user.name }} <small ng-bind=user.email></small></h2><p><b>Username:</b> {{ user.username }}</p></div></div></div>"
   );

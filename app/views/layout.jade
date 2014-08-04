@@ -17,17 +17,20 @@ html(ng-app="App")
 					a(href="#").navbar-brand My first project
 				div.collapse.navbar-collapse
 					ul.nav.navbar-nav
-						li
-							a(href="/") Home							
-						li
-							a(href="/about-us") About us
-						li
-							a(href="/users") Users
-					ul.nav.navbar-nav.navbar-right
-						li(if-guest)
-							a(href="/register") Register
-						li(if-guest)
-							a(href="/authentication") Authentication
+						li: a(href="/") Home							
+						li: a(href="/about-us") About us
+					ul(ng-controller="ProfileCtrl").nav.navbar-nav.navbar-right
+						li(if-guest): a(href="/register") Register
+						li(if-guest): a(href="/authentication") Authentication
+						li(if-authenticated).dropdown
+							a(href="").dropdown-toggle
+								img(src="http://placehold.it/24x24").img-circle
+								&nbsp;{{ user.name }}
+								span.caret
+							ul(role="menu").dropdown-menu
+								li: a(href="/profile") Perfil
+								li.divider
+								li: a(href="/auth/destroy") Sair
 		div
 			block content
 		script(type="text/javascript", src="http://localhost:35729/livereload.js")

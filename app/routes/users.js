@@ -12,17 +12,22 @@ module.exports = function (app) {
 	app.route('/api/users/:id').put(ctrl.update);
 	app.route('/api/users/:id').delete(ctrl.destroy);
 
-	app.post('/auth/local', passport.authenticate('local'), function(req, res) {
+	app.route('/auth/local').post(passport.authenticate('local'), function(req, res) {
 		if(req.user)
-			res.json(req.user);
+			res.json({result: true});
 		else
 			res.json({result: false});
 	});
 
-	app.get('/auth/check', function(req, res, next) {
-		if(req.isAuthenticated())
+	app.route('/auth/check').get(function(req, res, next) {
+		if(req.isAuthenticated()) {
 			res.json({result: true, user: req.user});
-		else 
+		}	else 
 			res.json({result: false});
-	})
+	});
+
+	app.route('/auth/destroy').get(function(req, res, next) {
+		req.logout();
+		res.redirect('/');
+	});
 };

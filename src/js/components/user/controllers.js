@@ -2,7 +2,8 @@
 
 angular.module('User/Controllers', [
 	'User/Ctrl/Auth',
+	'User/Ctrl/Profile',	
 	
 	'User/Ctrl/UserList',
-	'User/Ctrl/UserDetail'
+	'User/Ctrl/UserDetail',
 ]);

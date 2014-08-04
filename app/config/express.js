@@ -47,8 +47,11 @@ module.exports = function (db) {
 			collection: 'sessions'
 		})
 	}));
+	
 	app.use(passport.initialize());
 	app.use(passport.session());
+
+	app.disable('x-powered-by');
 
 	app.use(express.static(path.join(__dirname, '../../public')));
 
