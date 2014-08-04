@@ -1,7 +1,10 @@
 'use strict';
 
 module.exports = function (app) {
-	require('./users')(app);
+	require("fs").readdirSync("./app/routes").forEach(function(file) {
+	  if(file != 'index.js')
+	  	require('./'+file)(app);
+	});	
 
 	app.route('*').get(function(req, res) {
   	res.render('index');
