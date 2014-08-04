@@ -6,6 +6,7 @@ var User = require('../models/user'),
 exports.list = function (req, res) {
 	User
 		.find()
+		.populate('posts')
 		.exec(function (err, user) {
 			if(err)
 				console.log(err);
@@ -18,7 +19,8 @@ exports.get = function (req, res) {
 	var id = req.params.id;
 
 	User
-		.findOne({ _id: id })
+		.findById(id)
+		.populate('posts')
 		.exec(function(err, user) {
 			if(err)
 				console.log(err);
