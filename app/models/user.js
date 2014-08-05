@@ -30,8 +30,13 @@ var UserSchema = new Schema ({
 	},
 
 	posts: [{
-		type: Schema.Types.ObjectId,
+		type: Schema.ObjectId,
 		ref: 'Post'
+	}],
+
+	roles: [{
+		type: Schema.ObjectId,
+		ref: 'Role'
 	}]
 });
 
