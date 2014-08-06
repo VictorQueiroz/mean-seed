@@ -6,10 +6,13 @@ var sourcemaps = require('gulp-sourcemaps');
 var del = require('del');
 var templateCache = require('gulp-angular-templatecache');
 var htmlmin = require('gulp-htmlmin');
+
 var sass = require('gulp-sass');
 var uncss = require('gulp-uncss');
 var cssmin = require('gulp-cssmin');
+var prefix = require('gulp-autoprefixer');
 var rename = require('gulp-rename');
+
 var livereload = require('gulp-livereload');
 var nodemon = require('gulp-nodemon');
 
@@ -25,13 +28,20 @@ gulp.task('clean', function(cb) {
 });
 
 gulp.task('stylesheets', ['clean'], function () {
-	return gulp.src(paths.stylesheets)
+	gulp.src(paths.stylesheets)
 		.pipe(sass())
 		.pipe(cssmin())
+		.pipe(prefix(["last 1 version", "> 1%", "ie 8", "ie 7"], { cascade: true }))
 		.pipe(rename({
 			basename: 'style', suffix: '.min'
 		}))
 		.pipe(gulp.dest(paths.public + '/css'));
+
+	// gulp.src('public/css/**/{,*/}*.css')
+	// 	.pipe(uncss({
+	// 		html: ['src/partials/index.tpl.html']
+	// 	}))
+	// 	.pipe(gulp.dest('public/css'));
 });
 
 gulp.task('scripts', ['clean'], function () {

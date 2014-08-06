@@ -2,7 +2,7 @@
 
 module.exports = function (app) {
 	require("fs").readdirSync("./app/routes").forEach(function(file) {
-	  if(file != 'index.js')
+	  if(file != 'index.js' && file != 'filters.js')
 	  	require('./'+file.replace('.js', ''))(app);
 	});	
 

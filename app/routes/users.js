@@ -1,12 +1,13 @@
 'use strict';
 
 var controllers = require('../controllers'),
-		passport = require('passport');
+passport = require('passport'),
+filters = require('./filters');
 
 module.exports = function (app) {
 	var ctrl = controllers.users;
 
-	app.route('/api/users').get(ctrl.list);
+	app.route('/api/users').get(filters.authenticated, ctrl.list);
 	app.route('/api/users/:id').get(ctrl.get);
 	app.route('/api/users').post(ctrl.store);
 	app.route('/api/users/:id').put(ctrl.update);
@@ -20,9 +21,9 @@ module.exports = function (app) {
 	});
 
 	app.route('/auth/check').get(function(req, res, next) {
-		if(req.isAuthenticated()) {
+		if(req.isAuthenticated())
 			res.json({result: true, user: req.user});
-		}	else 
+		else 
 			res.json({result: false});
 	});
 

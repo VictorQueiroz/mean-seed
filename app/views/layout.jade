@@ -18,7 +18,7 @@ html(ng-app="App")
 				div.collapse.navbar-collapse
 					ul.nav.navbar-nav
 						li: a(href="/") Home							
-						li: a(href="/about-us") About us
+						li(if-guest): a(href="/about-us") About us
 						li(if-authenticated): a(href="/posts") Posts
 					ul(ng-controller="ProfileCtrl").nav.navbar-nav.navbar-right
 						li(if-guest): a(href="/register") Register

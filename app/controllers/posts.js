@@ -45,6 +45,33 @@ exports.store = function (req, res) {
 	});
 };
 
-exports.update = function (req, res) {};
+exports.update = function (req, res) {
+	var id = req.params.id;
+	var data = req.body;
 
-exports.destroy = function (req, res) {};
+	Post
+		.findById(id)
+		.exec(function(err, post) {
+			Object.keys(data).forEach(function(key) {
+				if(post[key] != 'undefined')
+					post[key] = data[key];
+			});
+
+			post.save();
+
+			res.json(post);
+		});
+ };
+
+exports.destroy = function (req, res) {
+	var id = req.params.id;
+
+	Post
+		.findById(id)
+		.exec(function(err, post) {
+			if(post.remove())
+				res.json({result: true});
+			else
+				res.json({result: false});
+		});
+};
