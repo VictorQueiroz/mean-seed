@@ -19,6 +19,7 @@ exports.get = function (req, res) {
 
 	Post
 		.findOne({ _id: id })
+		.populate('user')
 		.exec(function(err, post) {
 			if(err)
 				console.log(err);

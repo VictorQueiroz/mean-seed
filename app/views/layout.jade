@@ -19,6 +19,7 @@ html(ng-app="App")
 					ul.nav.navbar-nav
 						li: a(href="/") Home							
 						li: a(href="/about-us") About us
+						li(if-authenticated): a(href="/posts") Posts
 					ul(ng-controller="ProfileCtrl").nav.navbar-nav.navbar-right
 						li(if-guest): a(href="/register") Register
 						li(if-guest): a(href="/authentication") Authentication
@@ -44,4 +45,5 @@ html(ng-app="App")
 		script(type="text/javascript", src="/js/vendor/angular-strap/dist/angular-strap.tpl.min.js")
 		script(type="text/javascript", src="/js/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js")
 		script(type="text/javascript", src="/js/vendor/angular-animate/angular-animate.min.js")
+		script(type="text/javascript", src="/js/partials.js")
 		script(type="text/javascript", src="/js/base.min.js")

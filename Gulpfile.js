@@ -55,7 +55,8 @@ gulp.task('partials', ['clean'], function () {
 		.pipe(htmlmin({collapseWhitespace: true}))
 		.pipe(templateCache({
 			module: 'App/Partials',
-			filename: 'partials.js'
+			filename: 'partials.js',
+			standalone: true
 		}))
 		.pipe(uglify())		
 		.pipe(gulp.dest(paths.public + '/js'));

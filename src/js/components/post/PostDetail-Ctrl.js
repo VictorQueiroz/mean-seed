@@ -7,5 +7,5 @@ angular.module('Post/Ctrl/PostDetail', [
 ])
 
 .controller('PostDetailCtrl', ['$scope', '$routeParams', 'Post', function ($scope, $routeParams, Post) {
-	var user = $scope.user = Post.get({ id: $routeParams.id });
+	var post = $scope.post = Post.get({ id: $routeParams.id });
 }]);

@@ -4,6 +4,7 @@ angular.module('App/Routes', [
 	'ngRoute',
 
 	'User/Routes',
+	'Post/Routes'
 ])
 
 .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {

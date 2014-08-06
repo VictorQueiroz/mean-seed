@@ -12,7 +12,7 @@ angular.module('App', [
 	'App/Filters',
 	'App/Directives',
 	'App/Services',
-	'partials',
+	'App/Partials',
 
 	'Auth',
 
