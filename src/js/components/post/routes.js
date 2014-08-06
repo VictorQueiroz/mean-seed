@@ -11,6 +11,11 @@ angular.module('Post/Routes', [
 			controller: 'PostListCtrl'
 		})
 
+		.when('/posts/create', {
+			templateUrl: 'posts/create.tpl.html',
+			controller: 'PostCreateCtrl'
+		})
+
 		.when('/posts/:id', {
 			templateUrl: 'posts/show.tpl.html',
 			controller: 'PostDetailCtrl'

@@ -6,6 +6,7 @@ var Post = require('../models/post'),
 exports.list = function (req, res) {
 	Post
 		.find()
+		.populate('user')
 		.exec(function (err, post) {
 			if(err)
 				console.log(err);
