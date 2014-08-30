@@ -83,7 +83,7 @@ angular.module('User/Service/Foo', ['User/Service/Bar']);
 ```
 npm install
 bower install
-grunt
+gulp
 ```
 
 Live reload it's not working yet, but it will.
