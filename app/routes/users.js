@@ -13,18 +13,29 @@ module.exports = function (app) {
 	app.route('/api/users/:id').put(ctrl.update);
 	app.route('/api/users/:id').delete(ctrl.destroy);
 
+	app.route('/auth/facebook').get(passport.authenticate('facebook', {
+		scope: ['email', 'read_stream']
+	}));
+
+	app.route('/auth/facebook/callback').get(passport.authenticate('facebook', {
+		successRedirect: '/',
+		failureRedirect: '/login'
+	}));
+
 	app.route('/auth/local').post(passport.authenticate('local'), function(req, res) {
-		if(req.user)
-			res.json({result: true});
-		else
-			res.json({result: false});
+		if(req.user) {
+			res.json({ result: true });
+		} else {
+			res.json({ result: false });
+		};
 	});
 
 	app.route('/auth/check').get(function(req, res, next) {
-		if(req.isAuthenticated())
-			res.json({result: true, user: req.user});
-		else 
-			res.json({result: false});
+		if(req.isAuthenticated()) {
+			res.json({ result: true });
+		} else {
+			res.json({ result: false });
+		};
 	});
 
 	app.route('/auth/destroy').get(function(req, res, next) {

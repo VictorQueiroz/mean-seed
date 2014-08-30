@@ -1,30 +1,28 @@
-'use strict';
+(function () {
+	'use strict';
 
-angular.module('App/Routes', [
-	'ngRoute',
+	angular
+		.module('App/Routes', [])
 
-	'User/Routes',
-	'Post/Routes'
-])
+		.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+			console.log('Configuring module App/Routes...');
 
-.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-	$routeProvider
+			$routeProvider
 
-		.when('/', {
-			templateUrl: 'index.tpl.html'
-		})
+				.when('/', {
+					templateUrl: 'index.tpl.html'
+				})
 
-		.when('/about-us', {
-			templateUrl: 'about-us.tpl.html'
-		})
+				.when('/about-us', {
+					templateUrl: 'about-us.tpl.html'
+				})
 
-		.when('/authentication', {
-			templateUrl: 'authentication.tpl.html',
-			controller: 'AuthCtrl',
-			guest: true
-		})
+				.otherwise({ redirectTo: '/' });
 
-		.otherwise({ redirectTo: '/' });
+			$locationProvider.html5Mode(true);
+		}])
 
-	$locationProvider.html5Mode(true);
-}]);
+		.run(function () {
+			console.log('Running module App/Routes...');
+		});
+})();

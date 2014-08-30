@@ -1,17 +1,19 @@
 'use strict';
 
 var Post = require('../models/post'),
-		passport = require('passport');
+		passport = require('passport'),
+		_ = require('underscore-node');
 
 exports.list = function (req, res) {
 	Post
 		.find()
 		.populate('user')
 		.exec(function (err, post) {
-			if(err)
+			if(err) {
 				console.log(err);
-			else
+			}	else {
 				res.json(post);
+			};
 		});
 };
 
@@ -19,13 +21,14 @@ exports.get = function (req, res) {
 	var id = req.params.id;
 
 	Post
-		.findOne({ _id: id })
+		.findById(id)
 		.populate('user')
 		.exec(function(err, post) {
-			if(err)
+			if(err) {
 				console.log(err);
-			else
+			}	else {
 				res.json(post);
+			};
 		});
 };
 
@@ -38,10 +41,11 @@ exports.store = function (req, res) {
 	});
 
 	post.save(function(err, data) {
-		if(err)
+		if(err) {
 			res.json(err)
-		else 
+		} else  {
 			res.json(data);
+		};
 	});
 };
 
@@ -52,10 +56,7 @@ exports.update = function (req, res) {
 	Post
 		.findById(id)
 		.exec(function(err, post) {
-			Object.keys(data).forEach(function(key) {
-				if(post[key] != 'undefined')
-					post[key] = data[key];
-			});
+			_.extend(post, _.pick(data, 'title', 'body'));
 
 			post.save();
 
@@ -69,9 +70,10 @@ exports.destroy = function (req, res) {
 	Post
 		.findById(id)
 		.exec(function(err, post) {
-			if(post.remove())
+			if(post.remove()) {
 				res.json({result: true});
-			else
+			}	else {
 				res.json({result: false});
+			};
 		});
 };

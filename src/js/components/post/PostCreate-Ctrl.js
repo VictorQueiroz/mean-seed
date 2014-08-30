@@ -1,20 +1,24 @@
-'use strict';
+(function () {
+	'use strict';
 
-angular.module('Post/Ctrl/PostCreate', [
-	'ngRoute',
+	angular
+		.module('Post/Ctrl/PostCreate', [])
 
-	'Post/Service'
-])
+		.controller('PostCreateCtrl', ['$scope', '$location', '$socket', 'Post', function ($scope, $location, $socket, Post) {
+			$scope.post = new Post();
 
-.controller('PostCreateCtrl', ['$scope', '$location', 'Post', function ($scope, $location, Post) {
-	$scope.storePost = function (post) {
-		var post = new Post(post);
-
-		post
-			.$store()
-			.then(function(post) {
-				if(post)
-					$location.path('/posts/' + (post._id ? post._id : null))
-			});
-	};
-}]);
+			$scope.storePost = function (post) {
+				post
+					.$save()
+					.then(function(post) {
+						if(post) {
+							$socket().then(function(socket) {
+								socket.emit('post new', post._id);
+							});
+							
+							$location.path('/posts/' + (post._id ? post._id : ''));
+						}
+					});
+			};
+		}]);
+})();

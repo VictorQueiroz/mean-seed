@@ -2,7 +2,7 @@
 
 var passport = require('passport'),
 		BearerStrategy = require('passport-http-bearer').Strategy,
-		User = require('../../models/user');
+		User = require('../../models').User;
 
 module.exports = function (req, res, next) {	
 	passport.use(new BearerStrategy(

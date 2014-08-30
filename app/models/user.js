@@ -2,42 +2,36 @@
 
 var db = require('../config/mongoose'),
 		mongoose = require('mongoose'),
-		Schema = mongoose.Schema;
+		Schema = mongoose.Schema,
+		_ = require('underscore-node');
 
 var UserSchema = new Schema ({
 	username: {
-		type: String,
-		unique: true,
-		required: true
+		type: String
 	},
 
 	name: {
-		type: String,
-		default: '',
-		trim: true
-	},
-
-	email: {
-		type: String,
-		default: '',
-		unique: true,
-		required: true,
+		type: String
 	},
 
 	password: {
-		type: String,
-		required: true
+		type: String
 	},
 
-	posts: [{
-		type: Schema.ObjectId,
-		ref: 'Post'
-	}],
+	email: {
+		type: String
+	},
 
-	roles: [{
-		type: Schema.ObjectId,
-		ref: 'Role'
-	}]
+	fb_id: {
+		type: String
+	}
+});
+
+// Protect the users password
+UserSchema.set('toJSON', {
+	transform: function (doc, user, options) {
+		return _.omit(user, 'password', 'fb_id');
+	}
 });
 
 var User = mongoose.model('User', UserSchema);

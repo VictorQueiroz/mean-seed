@@ -1,15 +1,26 @@
 'use strict';
 
+var models = require('../models'),
+fs = require('fs'),
+path = require('path'),
+FOLDER = 'socket.io';
+
 module.exports = function (io) {
 	io.on('connection', function (socket) {
-		console.log('A user connected!');
+		socket.broadcast.emit('user connected');
 
-		socket.on('user authenticated', function(user){
-			socket.emit('user authenticated', user);
-		});
+		socket.on('disconnect', function () {
+			socket.broadcast.emit('user disconnected');
+		});		
 
-		socket.on('user new', function (_id) {
-			socket.broadcast.emit('user new', {name: 'Novo usuário.'});
-		});
+		// Load all socket.io controllers
+		fs
+			.readdirSync(path.join(__dirname, FOLDER))
+			.filter(function(file) {
+				return (file !== 'index.js');
+			})
+			.forEach(function(file) {
+				require(path.join(__dirname, FOLDER, file).replace('.js', ''))(socket);
+			});
 	});
 };

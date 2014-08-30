@@ -2,7 +2,7 @@
 
 var passport = require('passport'),
 		LocalStrategy = require('passport-local').Strategy,
-		User = require('../../models/user');
+		User = require('../../models').User;
 
 module.exports = function (req, res, next) {	
 	passport.use(new LocalStrategy({
@@ -10,27 +10,24 @@ module.exports = function (req, res, next) {
 			passwordField: 'password'
 		},
 		function(username, password, done) {
-			User.findOne({
-				username: username
-			}, function(err, user) {
-				if (err) {
-					return done(err);
-				}
-				if (!user) {
-					return done(null, false, {
-						message: 'Unknown user'
-					});
-				}
+			User
+				.findOne({	username: username })
+				.exec(function(user) {
+					if (!user) {
+						return done(null, false, {
+							message: 'Unknown user'
+						});
+					}
 
-				// if (!user.authenticate(password)) {
-				// 	return done(null, false, {
-				// 		message: 'Invalid password'
-				// 	});
-				// } else {
-				// }
+					// if (!user.authenticate(password)) {
+					// 	return done(null, false, {
+					// 		message: 'Invalid password'
+					// 	});
+					// } else {
+					// }
 
-				return done(null, user);
-			});
+					return done(null, user);
+				});
 		}
 	));
 };

@@ -12,9 +12,12 @@ var uncss = require('gulp-uncss');
 var cssmin = require('gulp-cssmin');
 var prefix = require('gulp-autoprefixer');
 var rename = require('gulp-rename');
+var jshint = require('gulp-jshint');
 
 var livereload = require('gulp-livereload');
 var nodemon = require('gulp-nodemon');
+
+var fs = require('fs');
 
 var paths = {};
 paths.partials = ['src/partials/**/{,*/}*.html'];
@@ -36,25 +39,30 @@ gulp.task('stylesheets', ['clean'], function () {
 			basename: 'style', suffix: '.min'
 		}))
 		.pipe(gulp.dest(paths.public + '/css'));
-
-	// gulp.src('public/css/**/{,*/}*.css')
-	// 	.pipe(uncss({
-	// 		html: ['src/partials/index.tpl.html']
-	// 	}))
-	// 	.pipe(gulp.dest('public/css'));
 });
 
 gulp.task('scripts', ['clean'], function () {
 	return gulp.src(paths.scripts)
 		.pipe(sourcemaps.init())
-			.pipe(uglify({
-				compress: true,
-				preserveComments: false,
-				output: {
-					semicolons: true,
-					comments: false,
-				}
+			.pipe(jshint({
+				lookup: true
 			}))
+			.pipe(jshint.reporter('default', {
+				verbose: true
+			}))
+			// .pipe(uglify({
+			// 	compress: {
+			// 		drop_console: false,
+			// 		unsafe: false
+			// 	},
+			// 	preserveComments: function () {
+			// 		return false;
+			// 	},
+			// 	output: {
+			// 		semicolons: false,
+			// 		comments: false
+			// 	}
+			// }))
 			.pipe(concat('base.min.js'))
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(paths.public + '/js'));
@@ -72,11 +80,20 @@ gulp.task('partials', ['clean'], function () {
 		.pipe(gulp.dest(paths.public + '/js'));
 });
 
-gulp.task('server', function () {
-	require('./server');
+gulp.task('server', ['clean'], function () {
+	// require('./server');
+
+	// very slow for development
+	nodemon({
+		script: 'server.js'
+	})
+
+	.on('restart', function () {
+		console.log('Restarting server...');
+	});
 });
 
-gulp.task('watch', function () {
+gulp.task('watch', ['clean'], function () {
 	gulp
 		.watch(paths.stylesheets, ['stylesheets'])
 		.on('change', livereload.changed);

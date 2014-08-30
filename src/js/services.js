@@ -1,11 +1,8 @@
-'use strict';
+(function () {
+	'use strict';
 
-angular.module('App/Services', [
-	'User/Services'
-])
+	angular
+		.module('App/Services', [])
 
-.value('version', '0.0.1')
-
-.factory('$socket', ['$window', function($window){
-	return $window.io();
-}]);
+		.value('version', '0.0.1');
+})();

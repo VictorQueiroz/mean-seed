@@ -2,5 +2,8 @@
   "curly": true,
   "eqnull": true,
   "eqeqeq": true,
-  "undef": true
+  "undef": true,
+  "unused": false,
+  "predef": ["console", "angular", "document"],
+  "es3": true
 }
