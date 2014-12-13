@@ -1,0 +1,12 @@
+html
+	head
+	body
+		script(src="js/app.js")
+		script.
+			window.start = function () {
+				if(!window.angular) {
+					throw new Error('Load angular before trying to start the application.');
+				}
+
+				angular.bootstrap(document, ['myapp']);
+			};
