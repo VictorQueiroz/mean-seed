@@ -11,4 +11,4 @@ define(function (require, exports, module) {
 		require('angular-ui-router').name,
 		require('components/components').name
 	]);
-})
+});

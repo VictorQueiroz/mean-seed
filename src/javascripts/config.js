@@ -6,7 +6,7 @@ requirejs.config({
 	waitSeconds: 0,
 	paths: {
 		'angular': '../../../public/lib/angular/angular',
-		'moment': '../../../public/lib/moment/moment-with-locales.js',
+		'moment': '../../../public/lib/moment/min/moment-with-locales',
 		'underscore': '../../../public/lib/underscore/underscore',
 		'angular-cookies': '../../../public/lib/angular-cookies/angular-cookies',
 		'angular-resource': '../../../public/lib/angular-resource/angular-resource',

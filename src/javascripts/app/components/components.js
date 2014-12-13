@@ -5,6 +5,7 @@ define(function (require, exports, module) {
 
 	module.exports = angular.module('myapp.components', [
 		require('./auth/auth').name,
+		require('./moment/moment').name,
 		require('./underscore/underscore').name
 	]);
 });
